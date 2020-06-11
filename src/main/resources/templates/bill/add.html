@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="main/public :: #public_head">
+
+</head>
+<body>
+
+<header class="publicHeader" th:replace="main/public :: #public_header">
+
+</header>
+
+<section class="publicTime" th:replace="main/public :: #public_time">
+
+</section>
+
+<section class="publicMian ">
+    <div class="left" th:replace="main/public :: #public_left(activeUri='bill')">
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>LOCATION:</strong>
+            <span>BILL PAGE >> ADD PAGE</span>
+        </div>
+        <div class="providerAdd">
+            <form id="addForm" th:action="@{/bill}" th:method="post" action="#">
+
+                <div class="">
+                    <label for="billCode">BILL CODE：</label>
+                    <input type="text" name="billCode" id="billCode" required/>
+                    <span>*ENTER CODE</span>
+                </div>
+                <div>
+                    <label for="billName">PRODUCT NAME：</label>
+                    <input type="text" name="billName" id="billName" required/>
+                    <span >*ENTER NAME</span>
+                </div>
+                <div>
+                    <label for="billCom">Com：</label>
+                    <input type="text" name="billCom" id="billCom" required/>
+                    <span>*enter com</span>
+
+                </div>
+                <div>
+                    <label for="billNum">PRODUCT NUM：</label>
+                    <input type="text" name="billNum" id="billNum" required/>
+                    <span>*NUM>0</span>
+                </div>
+                <div>
+                    <label for="money">PRICE：</label>
+                    <input type="text" name="money" id="money" required/>
+                    <span>*PRICE>0</span>
+                </div>
+                <div>
+                    <label >PROVIDER：</label>
+                    <select name="pid" >
+                        <option value="">--CHOOSE--</option>
+                        <option value="" th:each="p : ${providers}" th:value="${p.pid}" th:text="${p.providerName}">CHOOSE</option>
+                    </select>
+                    <span>*CHOOSE</span>
+                </div>
+                <div>
+                    <label >PAID：</label>
+                    <input type="radio" value="0" name="pay" checked />NO
+                    <input type="radio" value="1" name="pay"/>YES
+                </div>
+                <div class="providerAddBtn">
+
+                    <input type="button" onclick="$('#addForm').submit();" value="SAVE" />
+                    <input type="button" value="RETURN" onclick="history.back(-1)"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<script th:src="@{/webjars/jquery/3.3.1/jquery.js}" src="../js/jquery.js"></script>
+<!--
+	<script src="js/time.js"></script>
+	-->
+</body>
+</html>

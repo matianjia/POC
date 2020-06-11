@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>BILL MANAGE SYSTEM</title>
+    <link rel="stylesheet" href="../css/public.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+
+<header class="publicHeader" th:replace="main/public :: #public_header">
+
+</header>
+
+<section class="publicTime" th:replace="main/public :: #public_time">
+
+</section>
+
+<section class="publicMian ">
+    <div class="left" th:replace="main/public :: #public_left(activeUri='provider')">
+        <h2 class="leftH2"><span class="span1"></span>Function<span></span></h2>
+        <nav>
+            <ul class="list">
+                <li ><a  href="../bill/list.html">BILL</a></li>
+                <li id="active"><a href="../provider/list.html">PROVIDER</a></li>
+                <li><a href="../user/list.html">USER</a></li>
+                <li><a href="../main/password.html">PASSWORD</a></li>
+
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>LOCATION:</strong>
+            <span>PROVIDER PAGE</span>
+        </div>
+
+        <form id="searchForm" th:action="@{providers}" th:method="get">
+        <div class="search">
+            <span>Provider name：</span>
+            <input type="text" th:value="${providerName}"  name="providerName" placeholder="PROVIDER NAME"/>
+            <input type="button" onclick="$('#searchForm').submit()" value="SEARCH"/>
+            <a th:href="@{/provider}" href="add.html">ADD</a>
+        </div>
+        </form>
+
+        <table class="providerTable" cellpadding="0" cellspacing="0">
+            <tr class="firstTr">
+                <th width="10%">provider code</th>
+                <th width="20%">provider name</th>
+                <th width="10%">contact name</th>
+                <th width="10%">phone name</th>
+                <th width="10%">fax</th>
+                <th width="10%">create time</th>
+                <th width="30%">operation</th>
+            </tr>
+            <tr th:each="p: ${providers}">
+                <td th:text="${p.pid}">PRO-CODE—001</td>
+                <td th:text="${p.providerName}">001</td>
+                <td th:text="${p.people}"></td>
+                <td th:text="${p.phone}">15918230478</td>
+                <td th:text="${p.fax}">15918230478</td>
+                <td th:text="${p.createDate}">2015-11-12</td>
+                <td>
+                    <a th:href="@{/provider/} + ${p.pid}" href="view.html"><img src="../img/read.png" alt="VIEW" title="VIEW"/></a>
+                    <a th:href="@{/provider/} + ${p.pid} +'?type=update'" href="update.html"><img src="../img/xiugai.png" alt="EDIT" title="EDIT"/></a>
+					<a th:attr="del_uri=@{/provider/}+${p.pid}" class="delete"><img src="../img/schu.png" alt="EDIT" title="EDIT"/></a>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+</section>
+
+<div class="zhezhao"></div>
+<form method="post" id="deleteForm">
+    <input type="hidden" name="_method" value="delete">
+    <div class="remove" id="removeProv">
+       <div class="removerChid">
+           <h2>hint</h2>
+           <div class="removeMain" >
+               <p>delete？</p>
+               <a href="#" id="yes">yes</a>
+               <a href="#" id="no">no</a>
+           </div>
+       </div>
+    </div>
+</form>
+
+
+
+
+<script src="../js/jquery.js"></script>
+<script src="../js/js.js"></script>
+<!--
+	<script src="js/time.js"></script>
+	-->
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="main/public :: #public_head">
+
+</head>
+<body>
+
+<header class="publicHeader" th:replace="main/public :: #public_header">
+</header>
+
+<section class="publicTime" th:replace="main/public :: #public_time">
+
+</section>
+
+<section class="publicMian ">
+    <div class="left" th:replace="main/public :: #public_left(activeUri='bill')">
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>LOCATION:</strong>
+            <span>BILL PAGE >> INFO</span>
+        </div>
+        <div class="providerView">
+            <p><strong>BILL ID：</strong><span th:text="${billProvider.billCode}">231</span></p>
+            <p><strong>NAME：</strong><span th:text="${billProvider.billName}">002</span></p>
+            <p><strong>COM：</strong><span th:text="${billProvider.billCom}">1</span></p>
+            <p><strong>NUMBER：</strong><span th:text="${billProvider.billNum}">22</span></p>
+            <p><strong>PRICE：</strong><span th:text="${billProvider.money}">22</span></p>
+            <p><strong>PROVIDER：</strong><span th:text="${billProvider.providerName}">AAA</span></p>
+            <p><strong>PAID：</strong><span th:text="${billProvider.pay == 1 ? 'YES' : 'NO' }">NO</span></p>
+            <p><strong>TIME：</strong><span th:text="${#dates.format(billProvider.createDate, 'yyyy-MM-dd')}">2029/12/12 12:12:12</span></p>
+
+            <a onclick="history.back(-1)" href="#">RETURN</a>
+        </div>
+    </div>
+</section>
+<footer class="footer" th:replace="main/public :: #public_footer">
+</footer>
+<!--
+	<script src="js/time.js"></script>
+	-->
+</body>
+</html>

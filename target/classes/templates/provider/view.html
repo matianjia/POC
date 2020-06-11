@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>BILL MANAGE SYSTEM</title>
+    <link rel="stylesheet" href="../css/public.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+
+<header class="publicHeader">
+    <h1>BILL MANAGE SYSTEM</h1>
+
+    <div class="publicHeaderR">
+        <p><span>AFTERNOON！</span><span style="color: #fff21b"> Admin</span> , WELCOME！</p>
+        <a href="../main/login.html">LOGOUT</a>
+    </div>
+</header>
+
+<section class="publicTime">
+    <span id="time">HI</span>
+    <a href="#">PLEASE USE CHROME</a>
+</section>
+
+<section class="publicMian ">
+    <div class="left">
+        <h2 class="leftH2"><span class="span1"></span>FUNCTION <span></span></h2>
+        <nav>
+            <ul class="list">
+                <li ><a th:href="@{/bills}" href="../bill/list.html">BILL</a></li>
+                <li id="active"><a href="../provider/list.html">PROVIDER</a></li>
+                <li><a href="../user/list.html">USER</a></li>
+                <li><a href="../main/password.html">PASSWORD</a></li>
+
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>LOCATION:</strong>
+            <span>PROVIDER >> INFO</span>
+        </div>
+        <div class="providerView">
+            <p><strong>PROVIDER ID：</strong><span th:text="${provider.pid}">PRO-CODE—001</span></p>
+            <p><strong>NAME：</strong><span th:text="${provider.providerName}">001</span></p>
+            <p><strong>CONTACT：</strong><span th:text="${provider.people}">HAN</span></p>
+            <p><strong>PHONE：</strong><span th:text="${provider.phone}">15918230478</span></p>
+            <p><strong>FAX：</strong><span th:text="${provider.fax}">15918230478</span></p>
+            <p><strong>DESCRIPTION：</strong><span th:text="${provider.describe}">DES</span></p>
+
+            <a th:href="@{/providers}" href="list.html">RETURN</a>
+        </div>
+    </div>
+</section>
+
+<!--
+	<script src="js/time.js"></script>
+	-->
+</body>
+</html>

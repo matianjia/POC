@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>BILL MANAGE SYSREM</title>
+    <link rel="stylesheet" href="../css/public.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+
+<header class="publicHeader">
+    <h1>BILL MANAGE SYSTEM</h1>
+
+    <div class="publicHeaderR">
+        <p><span>AFTERNOON！</span><span style="color: #fff21b"> Admin</span> , WELCOME！</p>
+        <a href="../main/login.html">EXIT</a>
+    </div>
+</header>
+
+<section class="publicTime">
+    <span id="time">HI</span>
+    <a href="#">PLEASE USER CHROME</a>
+</section>
+
+<section class="publicMian ">
+    <div class="left">
+        <h2 class="leftH2"><span class="span1"></span>FUNCTION <span></span></h2>
+        <nav>
+            <ul class="list">
+                <li ><a href="../bill/list.html">BILL</a></li>
+                <li id="active"><a href="../provider/list.html">PROVIDER</a></li>
+                <li><a href="../user/list.html">USER</a></li>
+                <li><a href="../main/password.html">PASSWORD</a></li>
+
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>LOCATION:</strong>
+            <span>PROVIDER >> EDIT</span>
+        </div>
+        <div class="providerAdd">
+            <form id="updateForm" action="#" th:action="@{/provider}" th:method="post">
+                <input type="hidden" name="_method" value="put"/>
+                <input th:type="hidden" name="pid" th:value="${provider.pid}">
+                <input th:type="hidden" name="providerCode" th:value="${provider.providerCode}">
+
+                <div class="">
+                    <label for="providerName">NAME：</label>
+                    <input type="text"  th:value="${provider.providerName}" name="providerName" id="providerName" placeholder="001"/>
+                    <span >*</span>
+                </div>
+                <div>
+                    <label for="people">CONTACT：</label>
+                    <input type="text" th:value="${provider.people}" name="people" id="people" placeholder="HAN"/>
+                    <span>*</span>
+
+                </div>
+                <div>
+                    <label for="phone">PHONE：</label>
+                    <input type="text" th:value="${provider.phone}" name="phone" id="phone" placeholder="15918230478"/>
+                    <span></span>
+                </div>
+                <div>
+                    <label for="address">ADDRESS：</label>
+                    <input type="text" th:value="${provider.address}" name="address" id="address" placeholder="NJ"/>
+                    <span></span>
+
+                </div>
+                <div>
+                    <label for="fax">FAX：</label>
+                    <input type="text" th:value="${provider.fax}" name="fax" id="fax" placeholder="15918230478"/>
+                    <span></span>
+
+                </div>
+                <div>
+                    <label for="describe">DESCRIPTION：</label>
+                    <input type="text" th:value="${provider.describe}" name="describe" id="describe" placeholder="DESCRIBE"/>
+                    <span></span>
+
+                </div>
+                <div class="providerAddBtn">
+
+                    <input type="button" value="SAVE" onclick="$('#updateForm').submit()"/>
+                    <input type="button" value="RETURN" onclick="history.back(-1)"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<script src="../js/jquery.js"></script>
+<!--
+	<script src="js/time.js"></script>
+	-->
+</body>
+</html>

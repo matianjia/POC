@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <head lang="en" th:replace="main/public :: #public_head">
+
+        </head>
+        <body>
+
+        <header class="publicHeader" th:replace="main/public :: #public_header">
+
+        </header>
+
+        <section class="publicTime" th:replace="main/public :: #public_time">
+
+        </section>
+
+        <section class="publicMian ">
+            <div class="left" th:replace="main/public :: #public_left(activeUri='user')">
+            </div>
+        <div class="right">
+            <div class="location">
+                <strong>LOCATION:</strong>
+                <span>USER</span>
+            </div>
+            <form id="searchForm" th:action="@{/users}" th:method="get" >
+            <div class="search">
+                <span>USERNAME：</span>
+                <input type="text" th:value="${username}" name="username" placeholder="ENTER USERNAME"/>
+                <input type="button" value="SEARCH" onclick="$('#searchForm').submit()"/>
+                <a th:href="@{/user}" href="add.html">ADD USER</a>
+            </div>
+            </form>
+
+
+            <table class="providerTable" cellpadding="0" cellspacing="0">
+                <tr class="firstTr">
+                    <th width="10%">USERNAME</th>
+                    <th width="20%">NAME</th>
+                    <th width="10%">GENDER</th>
+                    <th width="10%">BIRTHDAY</th>
+                    <th width="10%">TYPE</th>
+                    <th width="30%">OPERATE</th>
+                </tr>
+                <tr th:each="u : ${users}">
+                    <td th:text="${u.username}">hanlu</td>
+                    <td th:text="${u.realName}">HANLU</td>
+
+                    <td th:text="${u.gender == 1 ? 'F' : 'M'}">F</td>
+                    <td th:text="${#dates.format(u.birthday, 'yyyy-MM-dd')}">1989/10/10</td>
+
+                    <td th:text="${u.userType==1 ? 'ADMIN' : (u.userType==2 ? 'BOSS' : 'USER') }">BOSS</td>
+                    <td>
+                        <a th:href="@{/user/} + ${u.id}" href="view.html"><img th:src="@{/img/read.png}" src="../img/read.png" alt="VIEW" title="VIEW"/></a>
+                        <a th:href="@{/user/} + ${u.id} +'?type=update'" href="update.html"><img th:src="@{/img/xiugai.png}"  src="../img/xiugai.png" alt="EDIT" title="EDIT"/></a>
+                        <a th:attr="del_uri=@{/user/}+${u.id}"  href="#" class="delete" ><img th:src="@{/img/schu.png}"  src="../img/schu.png" alt="DELETE" title="DELETE"/></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+
+
+	<div class="zhezhao"></div>
+	<form method="post" id="deleteForm">
+		<input type="hidden" name="_method" value="delete">
+		<div class="remove" id="removeProv">
+		   <div class="removerChid">
+			   <h2>HINT</h2>
+			   <div class="removeMain" >
+				   <p>DELETE？</p>
+				   <a href="#" id="yes">YES</a>
+				   <a href="#" id="no">NO</a>
+			   </div>
+		   </div>
+		</div>
+	</form>
+
+        BILL MANAGE SYSTEM
+
+
+
+<script th:src="@{/webjars/jquery/3.3.1/jquery.js}" src="../js/jquery.js"></script>
+<script th:src="@{/js/js.js}" src="../js/js.js"></script>
+<!--
+	<script src="js/time.js"></script>
+	-->
+</body>
+</html>

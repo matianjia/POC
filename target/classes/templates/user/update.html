@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="main/public :: #public_head">
+
+</head>
+<body>
+
+<header class="publicHeader" th:replace="main/public :: #public_header">
+
+</header>
+
+<section class="publicTime" th:replace="main/public :: #public_time">
+
+</section>
+
+<section class="publicMian ">
+    <div class="left" th:replace="main/public :: #public_left(activeUri='user')">
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>LOCATION:</strong>
+            <span>USER >> EDIT</span>
+        </div>
+        <div class="providerAdd">
+            <form id="updateForm" action="#" th:action="@{/user}" th:method="post">
+
+                <input th:type="hidden" name="_method" value="put">
+                <input th:type="hidden" name="id" th:value="${user.id}">
+                <input th:type="hidden" name="username" th:value="${user.username}">
+                <input th:type="hidden" name="password" th:value="${user.password}">
+
+
+                <div>
+                    <label for="realName">NAME：</label>
+                    <input type="text" th:value="${user.realName}" name="realName" id="realName" placeholder="HANLU"/>
+                    <span >*</span>
+                </div>
+
+                <div>
+                    <label >GENDER：</label>
+
+                    <select name="gender">
+                        <option value="1" th:selected="${user.gender == 1}">FEMALE</option>
+                        <option value="2" th:selected="${user.gender == 2}" selected>MALE</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="birthday">BIRTHDAY：</label>
+                    <input type="text" th:value="${#dates.format(user.birthday, 'yyyy-MM-dd')}" name="birthday" id="birthday" placeholder="2020/01/01"/>
+                    <span >*</span>
+                </div>
+                <div>
+                    <label >TYPE：</label>
+
+                    <input type="radio" name="userType" value="1" th:checked="${user.userType == 1}"/>ADMIN
+                    <input type="radio" name="userType" value="2" th:checked="${user.userType == 2}" checked/>BOSS
+                    <input type="radio" name="userType" value="3" th:checked="${user.userType == 3}"/>USER
+                </div>
+                <div class="providerAddBtn">
+
+                    <input type="button" value="SAVE" onclick="$('#updateForm').submit()"/>
+                    <input type="button" value="RETURN" onclick="history.back(-1)"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<script th:src="@{/webjars/jquery/3.3.1/jquery.js}" src="../js/jquery.js"></script>
+<!--
+	<script src="js/time.js"></script>
+	-->
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="main/public :: #public_head">
+
+</head>
+<body>
+
+<header class="publicHeader" th:replace="main/public :: #public_header">
+
+</header>
+
+<section class="publicTime" th:replace="main/public :: #public_time">
+
+</section>
+<section class="publicMian ">
+    <div class="left" th:replace="main/public :: #public_left(activeUri='user')">
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>LOCATION:</strong>
+            <span>USER >> INFO</span>
+        </div>
+        <div class="providerView">
+            <p><strong>USERNAME：</strong><span th:text="${user.username}">hanlu</span></p>
+            <p><strong>NAME：</strong><span th:text="${user.realName}">HANLU</span></p>
+            <p><strong>GENDER：</strong><span th:text="${user.gender == 1 ? 'F' : 'M'}">F</span></p>
+            <p><strong>BIRTHDAY：</strong><span th:text="${#dates.format(user.birthday, 'yyyy-MM-dd')}">2011/2/1</span></p>
+            <p><strong>TYPE：</strong><span th:text="${user.userType==1 ? 'ADMIN' : (user.userType==2 ? 'BOSS' : 'USER') }">BOSS</span></p>
+            <a onclick="history.back(-1)" href="#">RETURN</a>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

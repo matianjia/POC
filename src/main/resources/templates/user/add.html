@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="main/public :: #public_head">
+
+</head>
+<body>
+
+<header class="publicHeader" th:replace="main/public :: #public_header">
+
+</header>
+
+<section class="publicTime" th:replace="main/public :: #public_time">
+
+</section>
+
+<section class="publicMian ">
+    <div class="left" th:replace="main/public :: #public_left(activeUri='user')">
+    </div>
+    <div class="right">
+        <div class="location">
+            <strong>LOCATION:</strong>
+            <span>USER >> ADD USER</span>
+        </div>
+        <div class="providerAdd">
+            <form id="addForm" th:action="@{/user}" th:method="post" action="#">
+
+                <div class="">
+                    <label for="username">USERNAME：</label>
+                    <input type="text" name="username" id="username"/>
+                    <span>*ENTER USERNAME</span>
+                </div>
+                <div>
+                    <label for="realName">NAME：</label>
+                    <input type="text" name="realName" id="realName"/>
+                    <span >*ENTER REAL NAME</span>
+                </div>
+                <div>
+                    <label for="userpassword">PASSWORD：</label>
+                    <input type="text"  name="userpassword" id="userpassword"/>
+                    <span>*PASSWORD SHOULD MORE THAN 6 CHAR</span>
+
+                </div>
+                <div>
+                    <label for="password">CONFIRM：</label>
+                    <input type="text" name="password" id="password"/>
+                    <span id="pwdText" >*PLEASE CONFIRM</span>
+                </div>
+                <div>
+                    <label >GENDER：</label>
+
+                    <select name="gender">
+                        <option value="1">FEMALE</option>
+                        <option value="2">MALE</option>
+                    </select>
+                    <span></span>
+                </div>
+                <div>
+                    <label for="birthday">BIRTHDAY：</label>
+                    <input type="text" name="birthday" id="birthday"/>
+                    <span >*FORMAT yyyy-MM-dd </span>
+                </div>
+                <div>
+                    <label >TYPE OF USER：</label>
+                    <input type="radio" name="userType" value="1" />ADMIN
+                    <input type="radio" name="userType" value="2" checked/>BOSS
+                    <input type="radio" name="userType" value="3"/>USER
+                </div>
+                <div class="providerAddBtn">
+
+                    <input type="button" id="save" value="SAVE" />
+                    <input type="button" value="RETURN" onclick="history.back(-1)"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script th:src="@{/webjars/jquery/3.3.1/jquery.js}" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#save').click(function () {
+
+            if($("#userpassword").val().trim() == '' ||
+                $("#password").val().trim() == '' ||
+                $("#userpassword").val() != $("#password").val()) {
+                $("#pwdText").replaceWith("<span id='pwdText' style='color: red'>*ENTER CORRECT NAME</span>");
+                return;
+            }
+            $("#addForm").submit();
+        });
+
+    });
+</script>
+<!--
+	<script src="js/time.js"></script>
+	-->
+</body>
+</html>

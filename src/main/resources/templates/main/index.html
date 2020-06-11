@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>BILL MANAGE SYSTEM</title>
+    <link rel="stylesheet" href="../css/public.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+
+<header class="publicHeader">
+    <h1>BILL MANAGE SYSTEM</h1>
+
+    <div class="publicHeaderR">
+        <p><span>HI！</span><span style="color: #fff21b"> [[${session.loginUser.username}]]</span> , WELCOME！</p>
+        <a th:href="@{/logout}" href="login.html">LOGOUT</a>
+    </div>
+</header>
+
+<section class="publicTime">
+    <span id="time">WELCOME</span>
+    <a href="#">PLEASE USE CHROME</a>
+</section>
+
+<section class="publicMian">
+    <div class="left">
+        <h2 class="leftH2"><span class="span1"></span>FUNCTION <span></span></h2>
+        <nav>
+            <ul class="list">
+                <li ><a th:href="@{/bills}" href="../bill/list.html">BILL</a></li>
+                <li><a th:href="@{/providers}" href="../provider/list.html">PROVIDER</a></li>
+                <li><a  th:href="@{/users}" href="../user/list.html">USER</a></li>
+                <li><a th:href="@{/user/pwd}" href="../main/password.html">PASSWORD</a></li>
+
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <img class="wColck" src="../img/clock.jpg" alt=""/>
+        <div class="wFont">
+            <h2 th:text="${session.loginUser.username}">Admin</h2>
+            <p>WECLOME!</p>
+			<span id="hours"></span>
+        </div>
+    </div>
+</section>
+
+<!--
+	<script src="js/time.js"></script>
+	-->
+
+</body>
+</html>

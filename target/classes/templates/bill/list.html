@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:replace="main/public :: #public_head">
+
+</head>
+<body>
+
+<header class="publicHeader" th:replace="main/public :: #public_header">
+
+</header>
+
+<section class="publicTime" th:replace="main/public :: #public_time">
+
+</section>
+
+<section class="publicMian ">
+    <div class="left" th:replace="main/public :: #public_left(activeUri='bill')">
+    </div>
+        <div class="right">
+            <div class="location">
+                <strong>LOCATION:</strong>
+                <span>BILL PAGE</span>
+            </div>
+            <form id="searchForm" th:action="@{/bills}" th:method="get" >
+            <div class="search" >
+                <span>PRODUCT NAME：</span>
+                <input type="text" name="billName" th:value="${billName}" placeholder="PRODUCT NAME"/>
+
+                <span>PROVIDER：</span>
+
+                <select name="pid" >
+                    <option value=""  >--CHOOSE--</option>
+                    <option value="" th:selected="${pid == p.pid}" th:each="p : ${providers}" th:value="${p.pid}" th:text="${p.providerName}">北京市粮油总公司</option>
+                </select>
+
+                <span>PAID：</span>
+                <select name="pay" >
+                    <option value="">--CHOOSE--</option>
+                    <option value="0" th:selected="${pay == 0}" >NO</option>
+                    <option value="1" th:selected="${pay == 1}">YES</option>
+                </select>
+
+                <input type="button" value="search" onclick="$('#searchForm').submit()"/>
+                <a th:href="@{/bill}" href="../bill/add.html">ADD BILL</a>
+            </div>
+            </form>
+
+            <table class="providerTable" cellpadding="0" cellspacing="0">
+                <tr class="firstTr">
+                    <th width="10%">BILL ID</th>
+                    <th width="20%">ITEM NAME</th>
+                    <th width="10%">PROVIDER</th>
+                    <th width="10%">PRICE</th>
+                    <th width="10%">PAID</th>
+                    <th width="10%">TIME</th>
+                    <th width="30%">OPERA</th>
+                </tr>
+                <tr th:each="b : ${billProviders}">
+                    <td th:text="${b.billCode}">213</td>
+                    <td th:text="${b.billName}">123</td>
+                    <td th:text="${b.providerName}">1</td>
+                    <td th:text="${b.money}">1000</td>
+                    <td th:text="${b.pay == 1 ? 'YES' : 'NO'}">NO</td>
+                    <td th:text="${#dates.format(b.createDate, 'yyyy-MM-dd')}"></td>
+                    <td>
+                        <a th:href="@{/bill/} + ${b.bid}" href="view.html"><img th:src="@{/img/read.png}" src="../img/read.png" alt="查看" title="查看"/></a>
+                        <a th:href="@{/bill/} + ${b.bid} +'?type=update'" href="update.html"><img th:src="@{/img/xiugai.png}"  src="../img/xiugai.png" alt="修改" title="修改"/></a>
+                        <a th:attr="del_uri=@{/bill/}+${b.bid}"  href="#" class="delete" ><img th:src="@{/img/schu.png}"  src="../img/schu.png" alt="删除" title="删除"/></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+
+	<div class="zhezhao"></div>
+	<form method="post" id="deleteForm">
+		<input type="hidden" name="_method" value="delete">
+		<div class="remove" id="removeProv">
+		   <div class="removerChid">
+			   <h2>HINT</h2>
+			   <div class="removeMain" >
+				   <p>DELETE？</p>
+				   <a href="#" id="yes">YES</a>
+				   <a href="#" id="no">NO</a>
+			   </div>
+		   </div>
+		</div>
+	</form>
+
+
+
+<script th:src="@{/webjars/jquery/3.3.1/jquery.js}" src="../js/jquery.js"></script>
+<script th:src="@{/js/js.js}" src="../js/js.js"></script>
+<!--
+	<script src="js/time.js"></script>
+	-->
+
+</body>
+</html>
